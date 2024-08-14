@@ -1,6 +1,6 @@
 package br.com.brasilapi.app.Model;
 
-public class Veiculo {
+public class VeiculoFipe {
 
     private String valor;
     private String marca;

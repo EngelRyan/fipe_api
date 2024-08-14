@@ -4,15 +4,15 @@
     <title>Busca de Veículo</title>
 </head>
 <body>
-    <h1>Buscar Veículo</h1>
-    <form action="/buscarVeiculo" method="post">
+    <h1>Buscar Veículo pela FIPE</h1>
+    <form action="/tabelaFipe" method="post">
         <label for="fipe">FIPE:</label>
         <input type="text" id="fipe" name="fipe" required>
         <button type="submit">Buscar</button>
     </form>
-    <div th:if="${veiculos != null and !veiculos.isEmpty()}">
+    <div th:if="${veiculosFipe != null and !veiculosFipe.isEmpty()}">
         <h2>Dados dos Veículos</h2>
-        <div th:each="veiculo : ${veiculos}">
+        <div th:each="veiculo : ${veiculosFipe}">
             <p><strong>Valor:</strong> <span th:text="${veiculo.valor}"></span></p>
             <p><strong>Marca:</strong> <span th:text="${veiculo.marca}"></span></p>
             <p><strong>Modelo:</strong> <span th:text="${veiculo.modelo}"></span></p>

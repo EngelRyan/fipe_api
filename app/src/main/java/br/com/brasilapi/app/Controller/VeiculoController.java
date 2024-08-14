@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import br.com.brasilapi.app.Model.Veiculo;
+import br.com.brasilapi.app.Model.VeiculoFipe;
+import br.com.brasilapi.app.Model.VeiculoType;
 import br.com.brasilapi.app.Service.VeiculoService;
 
 @Controller
@@ -18,16 +19,31 @@ public class VeiculoController {
     @Autowired
     private VeiculoService veiculoService;
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String home(){
-        return "index";
+        return "home";
     }
 
-    @PostMapping("/buscarVeiculo")
-    public String buscarVeiculo(@RequestParam ("fipe") String fipe, Model model){
+    @GetMapping("/searchByFipe")
+    public String searchByFipe(){
+        return "searchFipe";
+    }
 
-       List<Veiculo> veiculos = veiculoService.buscaVeiculos(fipe);
-        model.addAttribute("veiculos", veiculos);
-        return "index";
-    }    
+    @PostMapping("/tabelaFipe")
+    public String searchByFipe(@RequestParam ("fipe") String fipe, Model model){
+       List<VeiculoFipe> veiculosFipe = veiculoService.searchVehiclesbyFipe(fipe);
+        model.addAttribute("veiculosFipe", veiculosFipe);
+        return "searchFipe";
+    }
+
+    @GetMapping("/searchByType")
+    public String searchByType(){
+        return "searchType";
+    }
+    @PostMapping("/tabelaTipos")
+    public String searchByType(@RequestParam ("type") String type, Model model){
+       List<VeiculoType> veiculosType = veiculoService.searchVehiclesbyType(type);
+        model.addAttribute("veiculosType", veiculosType);
+        return "searchType";
+    }
 }

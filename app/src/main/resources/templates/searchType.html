@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Busca de Veículo</title>
+</head>
+<body>
+    <h1>Buscar Veículo pelo Tipo</h1>
+<form action="/tabelaTipos" method="post">
+    <label for="type">Tipo:</label>
+    <select id="type" name="type" required>
+        <option value="" disabled selected>Escolha um tipo</option>
+        <option value="carros">Carros</option>
+        <option value="motos">Motos</option>
+        <option value="caminhoes">Caminhões</option>
+    </select>
+    <button type="submit">Buscar</button>
+</form>
+    <div th:if="${veiculosType != null and !veiculosType.isEmpty()}">
+        <h2>Veículos</h2>
+        <div th:each="veiculo : ${veiculosType}">
+            <p><strong>Valor:</strong> <span th:text="${veiculo.nome}"></span></p>
+            <p><strong>Valor:</strong> <span th:text="${veiculo.valor}"></span></p>
+            <hr>
+        </div>
+    </div>
+</body>
+</html>
